@@ -1,0 +1,37 @@
+import { styled } from 'styled-components';
+
+function HomeButton() {
+	return (
+		<Wrapper>
+			<Div>오늘 일기를 아직 작성하지 않으셨어요 !</Div>
+		</Wrapper>
+	);
+}
+
+export default HomeButton;
+
+const Wrapper = styled.div`
+	margin-top: 10%;
+
+	height: 12%;
+	width: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`;
+
+const Div = styled.div`
+	height: 100%;
+	width: 90%;
+
+	background-color: #f9f3cc;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-size: 18px;
+
+	border-radius: 3%;
+`;
