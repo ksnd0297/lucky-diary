@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { ReactNode } from 'react';
 import Ad from './Ad';
 
-function Layout({ children }) {
+function Layout({ children }: { children: ReactNode }) {
 	return (
 		<Wrapper>
 			{children}
