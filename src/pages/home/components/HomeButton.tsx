@@ -11,8 +11,6 @@ function HomeButton() {
 export default HomeButton;
 
 const Wrapper = styled.div`
-	margin-top: 10%;
-
 	height: 12%;
 	width: 100%;
 
