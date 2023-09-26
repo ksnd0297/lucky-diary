@@ -1,7 +1,5 @@
 function Ad() {
-  return (
-    <div>Ad</div>
-  )
+	return <div>Ad</div>;
 }
 
 export default Ad;

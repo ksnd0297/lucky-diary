@@ -1,9 +1,10 @@
+import Image from 'next/image';
 import { styled } from 'styled-components';
 
 function Coin() {
 	return (
 		<Wrapper>
-			<Heart />
+			<Image src="svg/heart-suit-svgrepo-com.svg" alt="코인" width={250} height={250} className="coin" />
 			<CenterDiv>999+</CenterDiv>
 		</Wrapper>
 	);
@@ -19,40 +20,15 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	padding-top: 5%; // TODO : Layout 으로 잡아주기
-`;
-
-const Heart = styled.div`
-	position: absolute;
-	width: 130px;
-	height: 130px;
-	background: #ff6666;
-	position: relative;
-	transform: rotate(45deg);
-
-	filter: drop-shadow(2px 4px 6px black);
-
-	&::before,
-	&::after {
-		content: '';
-		width: 130px;
-		height: 130px;
-		position: absolute;
-		border-radius: 50%;
-		background: #ff6666;
-	}
-
-	&::before {
-		left: -50%;
-	}
-	&::after {
-		top: -50%;
+	.coin {
+		filter: drop-shadow(2px 4px 6px black);
 	}
 `;
 
 const CenterDiv = styled.div`
 	position: absolute;
 	font-size: 45px;
-	font-weight: 800;
-	margin-bottom: 15%;
+	font-weight: 600;
+
+	margin-bottom: 2%;
 `;
