@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { ReactNode } from 'react';
-import Ad from './Ad';
+// import Ad from './Ad';
 
 function Layout({ children }: { children: ReactNode }) {
 	return (
 		<Wrapper>
 			{children}
-			<Ad />
+			{/* <Ad /> */}
 		</Wrapper>
 	);
 }
@@ -21,4 +21,6 @@ const Wrapper = styled.div`
 	flex-direction: column;
 
 	justify-content: space-between;
+
+	padding: 1%;
 `;
