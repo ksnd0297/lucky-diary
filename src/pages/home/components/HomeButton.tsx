@@ -1,8 +1,11 @@
 import { styled } from 'styled-components';
+import useModal from '@/hooks/useModal';
 
 function HomeButton() {
+	const { showModal } = useModal();
+
 	return (
-		<Wrapper>
+		<Wrapper onClick={showModal}>
 			<Div>오늘 일기를 아직 작성하지 않으셨어요 !</Div>
 		</Wrapper>
 	);
@@ -17,6 +20,8 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	margin-bottom: 5%;
 `;
 
 const Div = styled.div`
