@@ -1,20 +1,27 @@
-import useModal from '@/hooks/useModal';
+import styled from 'styled-components';
+import { useState } from 'react';
 import Modal from '../../components/Modal';
+import Header from './components/Header';
+import Write from './components/Write';
 
 function Fill() {
-	const { hideModal } = useModal();
+	const [text, setText] = useState<string>('');
 
 	return (
 		<Modal>
-			<div className="header">This is a full-width modal with a title</div>
-			<div className="body">
-				<p>And here is all its contents.</p>
-				<button type="button" className="btn js-close-modal" onClick={hideModal}>
-					Close
-				</button>
-			</div>
+			<Wrapper>
+				<Header text={text} setText={setText} />
+				<Write text={text} setText={setText} />
+			</Wrapper>
 		</Modal>
 	);
 }
 
 export default Fill;
+
+const Wrapper = styled.div`
+	width: 100%;
+	height: 100%;
+
+	background-color: #fffbfb;
+`;
