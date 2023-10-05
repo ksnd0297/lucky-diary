@@ -22,5 +22,5 @@ const Wrapper = styled.div`
 
 	justify-content: space-between;
 
-	padding: 5%;
+	padding: 1%;
 `;
