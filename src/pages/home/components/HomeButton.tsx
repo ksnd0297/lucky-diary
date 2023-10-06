@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	margin-bottom: 5%;
+	margin-bottom: 10%;
 `;
 
 const Div = styled.div`
