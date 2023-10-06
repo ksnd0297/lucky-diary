@@ -14,8 +14,6 @@ function Quote() {
 export default Quote;
 
 const Wrapper = styled.div`
-	margin-top: 8%;
-
 	width: 100%;
 	height: 10%;
 
