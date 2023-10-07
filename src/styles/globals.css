@@ -3,7 +3,7 @@ html, body, #__next {
   width: 100%;
 
   margin: 0;
-  font-family: "Yeongdeok_Sea" !important;
+  font-family: "Omyu_Pretty" !important;
   background-color: #f9f9f9;
 }
 
@@ -14,7 +14,7 @@ html, body, #__next {
 }
 
 @font-face {
-  font-family: "Yeongdeok_Sea";
+  font-family: "Omyu_Pretty";
   font-weight: 200;
-  src: url("../../public/font/Yeongdeok\ Sea.ttf") format("truetype");
+  src: url("../../public/font/Omyu_Pretty.ttf") format("truetype");
 }

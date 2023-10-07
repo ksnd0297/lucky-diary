@@ -40,8 +40,6 @@ const Wrapper = styled.div`
 	.calendar-tile {
 		height: 110px;
 
-		font-family: 'Yeongdeok_Sea' !important;
-
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -55,8 +53,6 @@ const Wrapper = styled.div`
 		border-radius: 8px;
 		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 		line-height: 1.125em;
-
-		font-family: 'Yeongdeok_Sea' !important;
 	}
 	.react-calendar__navigation button {
 		color: #6f48eb;
@@ -64,8 +60,6 @@ const Wrapper = styled.div`
 		background: none;
 		font-size: 16px;
 		margin-top: 8px;
-
-		font-family: 'Yeongdeok_Sea' !important;
 	}
 	.react-calendar__navigation button:enabled:hover,
 	.react-calendar__navigation button:enabled:focus {
@@ -73,11 +67,12 @@ const Wrapper = styled.div`
 	}
 
 	abbr {
+		text-decoration: none;
 		position: absolute;
 	}
 
-	abbr[title] {
-		text-decoration: none;
+	abbr[title] :not(.react-calendar__month-view__weekdays__weekday) {
+		color: black;
 	}
 
 	.react-calendar__tile--now {
