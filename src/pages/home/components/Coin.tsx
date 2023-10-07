@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 
 const CenterDiv = styled.div`
 	position: absolute;
-	font-size: 45px;
+	font-size: 41px;
 	font-weight: 600;
 
 	margin-bottom: 2%;

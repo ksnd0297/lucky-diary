@@ -58,7 +58,7 @@ const Wrapper = styled.div`
 		color: #6f48eb;
 		min-width: 44px;
 		background: none;
-		font-size: 16px;
+		font-size: 12px;
 		margin-top: 8px;
 	}
 
