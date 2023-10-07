@@ -33,6 +33,6 @@ const Wrapper = styled.div`
 `;
 
 const P = styled.p<{ fontWeight?: number }>`
-	font-size: 20px;
+	font-size: 16px;
 	font-weight: ${(props) => props.fontWeight};
 `;

@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 `;
 
 const P = styled.p`
-	font-size: 15px;
+	font-size: 11px;
 	padding: 3%;
 	font-weight: bold;
 	text-align: center;
