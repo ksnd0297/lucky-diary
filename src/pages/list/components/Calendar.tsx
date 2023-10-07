@@ -65,6 +65,7 @@ const Wrapper = styled.div`
 	abbr {
 		text-decoration: none;
 		position: absolute;
+		border-bottom: none;
 	}
 
 	abbr[title] :not(.react-calendar__month-view__weekdays__weekday) {
