@@ -3,11 +3,11 @@ html, body, #__next {
   width: 100%;
 
   margin: 0;
-  font-family: "Omyu_Pretty" !important;
   background-color: #f9f9f9;
 }
 
 * {
+  font-family: "Omyu_Pretty" !important;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
