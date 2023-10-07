@@ -85,7 +85,7 @@ const Wrapper = styled.div`
 		outline: 0;
 		background: transparent;
 
-		font-size: 16px;
+		font-size: 12px;
 		box-sizing: border-box;
 	}
 `;
