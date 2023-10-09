@@ -1,16 +1,28 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
 import Header from './components/Header';
 import Write from './components/Write';
 
-function Fill() {
-	const [text, setText] = useState<string>('');
+type FillProps = {
+	wroteText?: string;
+};
+
+function Fill(props: FillProps) {
+	const { wroteText } = props;
+
+	const [text, setText] = useState<string>(wroteText ?? '');
+
+	useEffect(() => {
+		if (wroteText) {
+			setText(wroteText);
+		}
+	}, [wroteText]);
 
 	return (
 		<Modal>
 			<Wrapper>
-				<Header text={text} setText={setText} />
+				<Header text={text} />
 				<Write text={text} setText={setText} />
 			</Wrapper>
 		</Modal>
@@ -18,6 +30,10 @@ function Fill() {
 }
 
 export default Fill;
+
+Fill.defaultProps = {
+	wroteText: '',
+};
 
 const Wrapper = styled.div`
 	width: 100%;
