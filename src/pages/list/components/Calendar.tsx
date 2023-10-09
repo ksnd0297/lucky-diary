@@ -1,11 +1,22 @@
 import { isSameDay, subYears } from 'date-fns';
 import { Calendar as CalendarComponent } from 'react-calendar';
 import styled from 'styled-components';
+import { Dispatch, SetStateAction } from 'react';
+import useModal from '@/hooks/useModal';
 
 const MIN_DATE = subYears(new Date(), 1);
 const MAX_DATE = new Date();
 
-function Calendar() {
+type CalendarProps = {
+	wroteText: string;
+	setWroteText: Dispatch<SetStateAction<string>>;
+};
+
+function Calendar(props: CalendarProps) {
+	const { wroteText, setWroteText } = props;
+
+	const { showModal } = useModal();
+
 	const writeDates = [new Date(2023, 9, 4), new Date(2023, 9, 5), new Date(2023, 9, 6)];
 
 	return (
@@ -25,6 +36,10 @@ function Calendar() {
 					if (writeDates.find((writeDate) => isSameDay(writeDate, date))) return <Circle />;
 
 					return <></>;
+				}}
+				onClickDay={() => {
+					setWroteText(wroteText);
+					showModal();
 				}}
 			/>
 		</Wrapper>
