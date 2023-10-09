@@ -1,7 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import Modal from '@/components/Modal';
 
 const useModal = () => {
+	const [isOn, setIsOn] = useState<boolean>(false);
+
 	const createModal = ({ children }: { children: ReactNode }) => <Modal>{children}</Modal>;
 
 	const showModal = () => {
@@ -9,6 +11,7 @@ const useModal = () => {
 
 		if (container) {
 			container.classList.add('modal-open');
+			setIsOn(true);
 		}
 	};
 
@@ -17,16 +20,11 @@ const useModal = () => {
 
 		if (container) {
 			container.classList.remove('modal-open');
+			setIsOn(false);
 		}
 	};
 
-	const isModalOpen = () => {
-		const container = document.querySelector('.modal-open');
-
-		return !!container;
-	};
-
-	return { isModalOpen, createModal, showModal, hideModal };
+	return { isOn, createModal, showModal, hideModal };
 };
 
 export default useModal;
