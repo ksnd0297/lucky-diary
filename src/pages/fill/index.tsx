@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import Modal from '../../components/Modal';
 import Header from './components/Header';
 import Write from './components/Write';
 
@@ -20,12 +19,10 @@ function Fill(props: FillProps) {
 	}, [wroteText]);
 
 	return (
-		<Modal>
-			<Wrapper>
-				<Header text={text} />
-				<Write text={text} setText={setText} />
-			</Wrapper>
-		</Modal>
+		<Wrapper>
+			<Header text={text} />
+			<Write text={text} setText={setText} />
+		</Wrapper>
 	);
 }
 

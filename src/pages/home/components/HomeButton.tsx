@@ -4,8 +4,12 @@ import useModal from '@/hooks/useModal';
 function HomeButton() {
 	const { showModal } = useModal();
 
+	const onClick = () => {
+		showModal();
+	};
+
 	return (
-		<Wrapper onClick={showModal}>
+		<Wrapper onClick={onClick}>
 			<Div>오늘 일기를 아직 작성하지 않으셨어요 !</Div>
 		</Wrapper>
 	);
