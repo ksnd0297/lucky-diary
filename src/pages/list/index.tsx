@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Modal from '@/components/Modal';
 import { isOpenModalState } from '@/Constant/layout';
+import Footer from '@/components/layout/Footer';
 import Fill from '../fill';
 import Calendar from './components/Calendar';
 
@@ -33,6 +34,7 @@ function ListPage() {
 	return (
 		<>
 			<Calendar wroteText={dummyData[0]} setWroteText={setWroteText} />
+			<Footer />
 			<Modal>{isOpen && <Fill wroteText={wroteText} isWrote />}</Modal>
 		</>
 	);
