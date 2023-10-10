@@ -5,10 +5,11 @@ import Write from './components/Write';
 
 type FillProps = {
 	wroteText?: string;
+	isWrote?: boolean;
 };
 
 function Fill(props: FillProps) {
-	const { wroteText } = props;
+	const { wroteText, isWrote } = props;
 
 	const [text, setText] = useState<string>(wroteText ?? '');
 
@@ -20,8 +21,8 @@ function Fill(props: FillProps) {
 
 	return (
 		<Wrapper>
-			<Header text={text} />
-			<Write text={text} setText={setText} />
+			<Header text={text} isWrote={isWrote} />
+			<Write text={text} setText={setText} isWrote={isWrote} />
 		</Wrapper>
 	);
 }
@@ -30,6 +31,7 @@ export default Fill;
 
 Fill.defaultProps = {
 	wroteText: '',
+	isWrote: false,
 };
 
 const Wrapper = styled.div`

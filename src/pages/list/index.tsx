@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import Modal from '@/components/Modal';
+import { isOpenModalState } from '@/Constant/layout';
 import Fill from '../fill';
 import Calendar from './components/Calendar';
 
@@ -23,12 +26,14 @@ const dummyData = [
 ];
 
 function ListPage() {
+	const isOpen = useRecoilValue(isOpenModalState);
+
 	const [wroteText, setWroteText] = useState<string>(dummyData[0]);
 
 	return (
 		<>
 			<Calendar wroteText={dummyData[0]} setWroteText={setWroteText} />
-			<Fill wroteText={wroteText} />
+			<Modal>{isOpen && <Fill wroteText={wroteText} isWrote />}</Modal>
 		</>
 	);
 }

@@ -4,13 +4,16 @@ import styled from 'styled-components';
 type WriteProps = {
 	text: string;
 	setText: Dispatch<SetStateAction<string>>;
+	isWrote?: boolean;
 };
 
 function Write(props: WriteProps) {
-	const { text, setText } = props;
+	const { text, setText, isWrote } = props;
 
 	const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-		setText(event.target.value);
+		if (!isWrote) {
+			setText(event.target.value);
+		}
 	};
 
 	const onPaste = (event: ClipboardEvent<HTMLTextAreaElement>) => {
@@ -37,6 +40,10 @@ function Write(props: WriteProps) {
 }
 
 export default Write;
+
+Write.defaultProps = {
+	isWrote: false,
+};
 
 const Wrapper = styled.div`
 	width: 100%;
