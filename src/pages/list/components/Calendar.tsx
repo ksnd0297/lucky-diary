@@ -27,8 +27,8 @@ function Calendar(props: CalendarProps) {
 				minDate={MIN_DATE}
 				maxDate={MAX_DATE}
 				showNeighboringMonth={false}
-				prev2Label=""
-				next2Label=""
+				prev2Label="‹‹"
+				next2Label="››"
 				calendarType="gregory"
 				minDetail="month"
 				// eslint-disable-next-line react/no-unstable-nested-components
