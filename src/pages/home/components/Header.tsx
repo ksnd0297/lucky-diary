@@ -9,7 +9,7 @@ function Header() {
 				&nbsp;999+
 			</Div>
 			<Div className="header-right" center="true">
-				<Image src="svg/bell-alt-1-svgrepo-com.svg" alt="설정" width={30} height={30} style={{ marginRight: '10px' }} />
+				<Image src="svg/bell-alt-1-svgrepo-com.svg" alt="알림" width={30} height={30} style={{ marginRight: '10px' }} />
 				<Image src="svg/gear-svgrepo-com.svg" alt="설정" width={30} height={30} />
 			</Div>
 		</Wrapper>
