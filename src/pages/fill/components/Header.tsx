@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-
 import useModal from '@/hooks/useModal';
 
 type HeaderProps = {
 	text: string;
+	isWrote?: boolean;
 };
 
 function Header(props: HeaderProps) {
-	const { text } = props;
+	const { text, isWrote } = props;
 
 	const { hideModal } = useModal();
 
@@ -26,12 +26,16 @@ function Header(props: HeaderProps) {
 	return (
 		<Wrapper>
 			<Image src="svg/close-svgrepo-com.svg" alt="일기 작성" width={25} height={25} onClick={onClose} />
-			<Image src="svg/pencil-svgrepo-com.svg" alt="일기 작성" width={40} height={40} onClick={onSubmit} />
+			{!isWrote && <Image src="svg/pencil-svgrepo-com.svg" alt="일기 작성" width={40} height={40} onClick={onSubmit} />}
 		</Wrapper>
 	);
 }
 
 export default Header;
+
+Header.defaultProps = {
+	isWrote: false,
+};
 
 const Wrapper = styled.div`
 	width: 100%;
