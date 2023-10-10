@@ -1,21 +1,19 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Dispatch, SetStateAction } from 'react';
+
 import useModal from '@/hooks/useModal';
 
 type HeaderProps = {
 	text: string;
-	setText: Dispatch<SetStateAction<string>>;
 };
 
 function Header(props: HeaderProps) {
-	const { text, setText } = props;
+	const { text } = props;
 
 	const { hideModal } = useModal();
 
 	const onClose = () => {
 		hideModal();
-		setText('');
 	};
 
 	const onSubmit = () => {
