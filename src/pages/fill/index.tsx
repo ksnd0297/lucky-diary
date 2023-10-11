@@ -21,7 +21,7 @@ function Fill(props: FillProps) {
 
 	return (
 		<Wrapper>
-			<Header text={text} isWrote={isWrote} />
+			<Header /* text={text} */ isWrote={isWrote} />
 			<Write text={text} setText={setText} isWrote={isWrote} />
 		</Wrapper>
 	);

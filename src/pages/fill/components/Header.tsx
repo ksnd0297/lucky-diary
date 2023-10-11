@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import useModal from '@/hooks/useModal';
 
 type HeaderProps = {
-	text: string;
+	// text: string;
 	isWrote?: boolean;
 };
 
 function Header(props: HeaderProps) {
-	const { text, isWrote } = props;
+	const { /* text, */ isWrote } = props;
 
 	const { hideModal } = useModal();
 
@@ -18,7 +18,6 @@ function Header(props: HeaderProps) {
 
 	const onSubmit = () => {
 		// TODO : 웹뷰로 텍스트 데이터 전송
-		console.log('text : ', text);
 
 		onClose();
 	};

@@ -3,7 +3,22 @@ import '@/styles/normalize.css';
 import '@/styles/Calendar.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilValue } from 'recoil';
+import Modal from '@/components/Modal';
+import { modalConfigState, popupConfigState } from '@/Constant/layout';
+import Popup from '@/components/Popup';
+
+function ModalComponent() {
+	const modalConfig = useRecoilValue(modalConfigState);
+
+	return <Modal {...modalConfig} />;
+}
+
+function PopupComponent() {
+	const popupConfig = useRecoilValue(popupConfigState);
+
+	return <Popup {...popupConfig} />;
+}
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
@@ -16,6 +31,8 @@ export default function App({ Component, pageProps }: AppProps) {
 					/>
 				</Head>
 				<Component {...pageProps} />
+				<ModalComponent />
+				<PopupComponent />
 			</RecoilRoot>
 		</>
 	);
