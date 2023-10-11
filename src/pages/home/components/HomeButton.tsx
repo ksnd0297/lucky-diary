@@ -1,11 +1,18 @@
 import { styled } from 'styled-components';
 import useModal from '@/hooks/useModal';
+import Fill from '@/pages/fill';
 
 function HomeButton() {
 	const { showModal } = useModal();
 
+	const onClick = () => {
+		showModal({
+			children: <Fill />,
+		});
+	};
+
 	return (
-		<Wrapper onClick={showModal}>
+		<Wrapper onClick={onClick}>
 			<Div>오늘 일기를 아직 작성하지 않으셨어요 !</Div>
 		</Wrapper>
 	);

@@ -3,7 +3,6 @@ import Coin from './components/Coin';
 import Header from './components/Header';
 import HomeButton from './components/HomeButton';
 import Quote from './components/Quote';
-import Fill from '../fill';
 
 function Home() {
 	return (
@@ -13,7 +12,6 @@ function Home() {
 			<BeforeWrite />
 			<Quote />
 			<HomeButton />
-			<Fill />
 		</>
 	);
 }

@@ -1,11 +1,23 @@
 import { isSameDay, subYears } from 'date-fns';
 import { Calendar as CalendarComponent } from 'react-calendar';
 import styled from 'styled-components';
+import { Dispatch, SetStateAction } from 'react';
+import useModal from '@/hooks/useModal';
+import Fill from '@/pages/fill';
 
 const MIN_DATE = subYears(new Date(), 1);
 const MAX_DATE = new Date();
 
-function Calendar() {
+type CalendarProps = {
+	wroteText: string;
+	setWroteText: Dispatch<SetStateAction<string>>;
+};
+
+function Calendar(props: CalendarProps) {
+	const { wroteText, setWroteText } = props;
+
+	const { showModal } = useModal();
+
 	const writeDates = [new Date(2023, 9, 4), new Date(2023, 9, 5), new Date(2023, 9, 6)];
 
 	return (
@@ -16,8 +28,8 @@ function Calendar() {
 				minDate={MIN_DATE}
 				maxDate={MAX_DATE}
 				showNeighboringMonth={false}
-				prev2Label=""
-				next2Label=""
+				prev2Label="‹‹"
+				next2Label="››"
 				calendarType="gregory"
 				minDetail="month"
 				// eslint-disable-next-line react/no-unstable-nested-components
@@ -25,6 +37,12 @@ function Calendar() {
 					if (writeDates.find((writeDate) => isSameDay(writeDate, date))) return <Circle />;
 
 					return <></>;
+				}}
+				onClickDay={() => {
+					setWroteText(wroteText);
+					showModal({
+						children: <Fill wroteText={wroteText} isWrote />,
+					});
 				}}
 			/>
 		</Wrapper>
@@ -50,7 +68,6 @@ const Wrapper = styled.div`
 		height: 100%;
 		background-color: #fff;
 		color: #222;
-		border-radius: 8px;
 		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 		line-height: 1.125em;
 	}
@@ -58,7 +75,7 @@ const Wrapper = styled.div`
 		color: #6f48eb;
 		min-width: 44px;
 		background: none;
-		font-size: 12px;
+		font-size: 16px;
 		margin-top: 8px;
 	}
 
