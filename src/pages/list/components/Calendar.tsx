@@ -3,6 +3,7 @@ import { Calendar as CalendarComponent } from 'react-calendar';
 import styled from 'styled-components';
 import { Dispatch, SetStateAction } from 'react';
 import useModal from '@/hooks/useModal';
+import Fill from '@/pages/fill';
 
 const MIN_DATE = subYears(new Date(), 1);
 const MAX_DATE = new Date();
@@ -39,7 +40,9 @@ function Calendar(props: CalendarProps) {
 				}}
 				onClickDay={() => {
 					setWroteText(wroteText);
-					showModal();
+					showModal({
+						children: <Fill wroteText={wroteText} isWrote />,
+					});
 				}}
 			/>
 		</Wrapper>

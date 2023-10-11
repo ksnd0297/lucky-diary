@@ -1,11 +1,14 @@
 import { styled } from 'styled-components';
 import useModal from '@/hooks/useModal';
+import Fill from '@/pages/fill';
 
 function HomeButton() {
 	const { showModal } = useModal();
 
 	const onClick = () => {
-		showModal();
+		showModal({
+			children: <Fill />,
+		});
 	};
 
 	return (
