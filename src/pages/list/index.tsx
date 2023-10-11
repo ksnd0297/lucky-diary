@@ -23,7 +23,7 @@ const dummyData = [
 ];
 
 function ListPage() {
-	const [wroteText, setWroteText] = useState<string>(dummyData[0]);
+	const [, setWroteText] = useState<string>(dummyData[0]);
 
 	return (
 		<>
