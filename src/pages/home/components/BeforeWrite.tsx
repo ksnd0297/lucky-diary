@@ -4,17 +4,20 @@ import { styled } from 'styled-components';
 function BeforeWrite() {
 	const router = useRouter();
 
-	const onClick = () => {
+	const onClick = (path: string) => {
 		if (router.isReady) {
-			router.push('list');
+			router.push(`/${path}`);
 		}
 	};
 
 	return (
 		<Wrapper>
 			<P fontWeight={600}>999일 전에 마지막 일기를 작성하셨어요</P>
-			<P fontWeight={800} onClick={onClick}>
+			<P fontWeight={800} onClick={() => onClick('list')}>
 				가장 최근에 작성한 일기 보러가기 {'>'}
+			</P>
+			<P fontWeight={800} onClick={() => onClick('history')}>
+				내 행운 코인 내역 보러가기 {'>'}
 			</P>
 		</Wrapper>
 	);
