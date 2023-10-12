@@ -1,7 +1,13 @@
-import { format } from 'date-fns';
 import styled from 'styled-components';
 import useModal from '@/hooks/useModal';
 import Fill from '@/pages/fill';
+
+const getFormatDate = (date: Date) => {
+	const year = date.getFullYear();
+	const month = 1 + date.getMonth();
+	const day = date.getDate();
+	return `${year}년 ${month}월 ${day}일 `; // Template literals 이용
+};
 
 function List({ date, value }: { date: Date; value: number }) {
 	const { showModal } = useModal();
@@ -14,7 +20,7 @@ function List({ date, value }: { date: Date; value: number }) {
 
 	return (
 		<Wrapper onClick={() => onClick(date.toString())}>
-			<Div fontSize="18px">{format(date, 'yyyy년 MM월 dd일')}</Div>
+			<Div fontSize="18px">{getFormatDate(date)}</Div>
 			<Div fontSize="16px" flex center>
 				{value >= 0 ? '❤️' : '💙'}&nbsp;&nbsp;
 				<Div color={value >= 0 ? 'red' : 'blue'}>{value >= 0 ? `+${value}` : value}</Div>
