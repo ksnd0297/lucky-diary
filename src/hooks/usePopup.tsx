@@ -9,16 +9,22 @@ const usePopup = () => {
 		children,
 		onConfirm,
 		onCancel,
+		confirmText,
+		cancelText,
 	}: {
 		children?: ReactNode;
 		onConfirm?: () => void;
 		onCancel?: () => void;
+		confirmText?: string;
+		cancelText?: string;
 	}) => {
 		setPopupConfig({
 			isOpen: true,
 			children,
 			onConfirm,
 			onCancel,
+			confirmText,
+			cancelText,
 		});
 	};
 

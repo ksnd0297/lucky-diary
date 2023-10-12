@@ -19,7 +19,7 @@ function Footer() {
 				height={30}
 				onClick={() => onClick('/list')}
 			/>
-			<Image src="svg/heart-svgrepo-com2.svg" alt="알림" width={30} height={30} onClick={() => onClick('/notice')} />
+			<Image src="svg/heart-svgrepo-com2.svg" alt="알림" width={30} height={30} onClick={() => onClick('/history')} />
 			<Image src="svg/gear-svgrepo-com.svg" alt="설정" width={30} height={30} onClick={() => onClick('/setting')} />
 		</Wrapper>
 	);
@@ -28,7 +28,7 @@ function Footer() {
 export default Footer;
 
 const Wrapper = styled.div`
-	position: absolute;
+	position: sticky;
 	bottom: 0;
 
 	width: 100%;
@@ -39,4 +39,6 @@ const Wrapper = styled.div`
 	justify-content: space-evenly;
 
 	border-top: 3px solid black;
+
+	background-color: white;
 `;
