@@ -82,7 +82,7 @@ const Content = styled.div`
 	height: 100%;
 	background-color: white;
 
-	border-radius: 2%;
+	border-radius: 5%;
 
 	display: flex;
 	align-items: center;
@@ -119,7 +119,7 @@ const Button = styled.button`
 	width: 40%;
 	height: 70%;
 
-	border-radius: 3%;
+	border-radius: 5%;
 
 	display: flex;
 	align-items: center;

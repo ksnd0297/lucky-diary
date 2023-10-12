@@ -23,4 +23,6 @@ const Wrapper = styled.div`
 	justify-content: space-between;
 
 	padding: 1%;
+
+	background-color: #fcf9fb;
 `;

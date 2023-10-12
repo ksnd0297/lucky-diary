@@ -34,6 +34,6 @@ export default History;
 
 const Wrapper = styled.div`
 	width: 100%;
-	height: 92%;
+	height: 100%;
 	overflow: auto;
 `;
