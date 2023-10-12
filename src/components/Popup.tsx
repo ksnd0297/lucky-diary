@@ -5,7 +5,7 @@ import usePopup from '@/hooks/usePopup';
 import Portal from './Portal';
 
 function Popup(props: PopupConfigType) {
-	const { isOpen, children, onConfirm, onCancel } = props;
+	const { isOpen, children, onConfirm, onCancel, confirmText, cancelText } = props;
 
 	const { hidePopup } = usePopup();
 
@@ -28,10 +28,10 @@ function Popup(props: PopupConfigType) {
 							</ContentWrapper>
 							<ButtonWrapper>
 								<Button className="cancel" onClick={onCancel}>
-									취소
+									{cancelText ?? '취소'}
 								</Button>
 								<Button className="confirm" onClick={onConfirm}>
-									확인
+									{confirmText ?? '확인'}
 								</Button>
 							</ButtonWrapper>
 						</Wrapper>
@@ -86,7 +86,7 @@ const Content = styled.div`
 
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-evenly;
 
 	flex-direction: column;
 `;

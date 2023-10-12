@@ -16,6 +16,8 @@ export type PopupConfigType = {
   children?: ReactNode;
   onConfirm?: () => void;
   onCancel?: () => void;
+  confirmText?: string;
+  cancelText?: string;
 }
 
 export const popupConfigState = atom({
