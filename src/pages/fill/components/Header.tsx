@@ -15,7 +15,7 @@ function Header(props: HeaderProps) {
 	const { showPopup, hidePopup } = usePopup();
 
 	const onClose = () => {
-		if (text.length > 0) {
+		if (text.length > 0 && !isWrote) {
 			showPopup({
 				children: (
 					<>

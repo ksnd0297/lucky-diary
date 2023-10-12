@@ -38,7 +38,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: space-evenly;
 
-	border-top: 3px solid black;
+	border-top: 2px solid black;
 
 	background-color: white;
 `;
