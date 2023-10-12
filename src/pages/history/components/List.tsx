@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 import useModal from '@/hooks/useModal';
 import Fill from '@/pages/fill';
-
-const getFormatDate = (date: Date) => {
-	const year = date.getFullYear();
-	const month = 1 + date.getMonth();
-	const day = date.getDate();
-	return `${year}년 ${month}월 ${day}일 `; // Template literals 이용
-};
+import { getFormatDate } from '@/utils/date';
 
 function List({ date, value }: { date: Date; value: number }) {
 	const { showModal } = useModal();
