@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Footer from '@/components/layout/Footer';
+import { withLayout } from '@/components/layout/withLayout';
 import Calendar from './components/Calendar';
 
 const dummyData = [
@@ -25,12 +25,7 @@ const dummyData = [
 function ListPage() {
 	const [, setWroteText] = useState<string>(dummyData[0]);
 
-	return (
-		<>
-			<Calendar wroteText={dummyData[0]} setWroteText={setWroteText} />
-			<Footer />
-		</>
-	);
+	return <Calendar wroteText={dummyData[0]} setWroteText={setWroteText} />;
 }
 
-export default ListPage;
+export default withLayout({ footer: true })(ListPage);
