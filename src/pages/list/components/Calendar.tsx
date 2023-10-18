@@ -68,7 +68,6 @@ const Wrapper = styled.div`
 		height: 100%;
 		background-color: #fcf9fb;
 		color: #222;
-		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 		line-height: 1.125em;
 	}
 	.react-calendar__navigation button {
