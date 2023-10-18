@@ -4,8 +4,7 @@ import { styled } from 'styled-components';
 function Coin() {
 	return (
 		<Wrapper>
-			<Image src="svg/heart-suit-svgrepo-com.svg" alt="코인" width={250} height={250} className="coin" />
-			<CenterDiv>999+</CenterDiv>
+			<Image src="/gif/giphy_out.gif" alt="giphy" width={230} height={230} className="coin" />
 		</Wrapper>
 	);
 }
@@ -21,14 +20,7 @@ const Wrapper = styled.div`
 	justify-content: center;
 
 	.coin {
-		filter: drop-shadow(2px 4px 6px black);
+		border: none;
+		border-radius: 50%;
 	}
-`;
-
-const CenterDiv = styled.div`
-	position: absolute;
-	font-size: 41px;
-	font-weight: 600;
-
-	margin-bottom: 2%;
 `;

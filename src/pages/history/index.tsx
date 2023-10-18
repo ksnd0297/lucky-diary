@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { subDays } from 'date-fns';
 import { Fragment } from 'react';
-import Footer from '@/components/layout/Footer';
+import { withLayout } from '@/components/layout/withLayout';
 import List from './components/List';
 
 const list = [
@@ -25,12 +25,11 @@ function History() {
 					<List key={value.date.getTime()} {...value} />
 				))}
 			</Wrapper>
-			<Footer />
 		</>
 	);
 }
 
-export default History;
+export default withLayout({ footer: true })(History);
 
 const Wrapper = styled.div`
 	width: 100%;

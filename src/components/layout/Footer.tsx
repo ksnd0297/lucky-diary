@@ -28,7 +28,6 @@ function Footer() {
 export default Footer;
 
 const Wrapper = styled.div`
-	position: sticky;
 	bottom: 0;
 
 	width: 100%;
@@ -40,5 +39,5 @@ const Wrapper = styled.div`
 
 	border-top: 2px solid black;
 
-	background-color: white;
+	background-color: #fcf9fb;
 `;

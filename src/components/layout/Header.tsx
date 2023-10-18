@@ -32,6 +32,7 @@ const Wrapper = styled.div`
 	justify-content: space-between;
 
 	padding: 0 5%;
+	padding-top: 5%;
 `;
 
 const Div = styled.div<{ center?: string }>`

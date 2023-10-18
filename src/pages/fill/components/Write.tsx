@@ -55,8 +55,6 @@ const Wrapper = styled.div`
 		width: 100%;
 		height: 100%;
 		background: #fafafa;
-
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 		overflow: hidden;
 	}
 	.paper:before {
@@ -73,7 +71,7 @@ const Wrapper = styled.div`
 
 	.paper-content {
 		position: absolute;
-		top: 30px;
+		top: 0px;
 		right: 0;
 		bottom: 30px;
 		left: 30px;
@@ -86,13 +84,13 @@ const Wrapper = styled.div`
 		max-width: 100%;
 		height: 100%;
 		max-height: 100%;
-		line-height: 30px;
+		line-height: 25px;
 		padding: 0 10px;
 		border: 0;
 		outline: 0;
 		background: transparent;
 
-		font-size: 12px;
+		font-size: 18px;
 		box-sizing: border-box;
 	}
 `;
