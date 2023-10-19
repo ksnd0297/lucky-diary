@@ -69,7 +69,7 @@ const Wrapper = styled.div`
 
 const ContentWrapper = styled.div`
 	width: 100%;
-	height: 70%;
+	height: 60%;
 	background-color: white;
 	border-top-left-radius: 2%;
 	border-top-right-radius: 2%;
@@ -93,7 +93,7 @@ const Content = styled.div`
 
 const ButtonWrapper = styled.div`
 	width: 100%;
-	height: 30%;
+	height: 25%;
 	background-color: white;
 
 	border-end-start-radius: 2%;
