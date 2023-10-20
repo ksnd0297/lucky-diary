@@ -4,12 +4,13 @@ import { isClient } from '@/utils/device';
 type messageType = {
 	type: string;
 	domain: string;
-	data?: string;
+	message?: object;
 };
 
 const useMessage = () => {
-	const [data, setData] = useState<any>();
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const [data, setData] = useState<{ code: number; key: string; data: any }>();
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 
 	const getMessage = () => {
 		if (!isClient) return;
@@ -17,12 +18,11 @@ const useMessage = () => {
 		const listener = (event: MessageEvent) => {
 			const response = JSON.parse(event.data);
 
+			setIsFetched(true);
 			setData(response);
-			setIsLoading(false);
 		};
 
-		setIsLoading(true);
-		window.addEventListener('message', listener, { once: true });
+		window.addEventListener('message', listener);
 	};
 
 	const postMessage = (message: messageType) => {
@@ -31,7 +31,21 @@ const useMessage = () => {
 		window.ReactNativeWebView.postMessage(JSON.stringify(message));
 	};
 
-	return { data, isLoading, getMessage, postMessage };
+	const debug = (message: object) => {
+		if (!isClient) return;
+
+		window.ReactNativeWebView.postMessage(
+			JSON.stringify({
+				domain: 'UTIL',
+				type: 'DEBUG',
+				message,
+			}),
+		);
+	};
+
+	getMessage();
+
+	return { response: data!, isFetched, postMessage, debug };
 };
 
 export default useMessage;

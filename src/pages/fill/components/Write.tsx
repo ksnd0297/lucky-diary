@@ -21,6 +21,28 @@ function Write(props: WriteProps) {
 		return false;
 	};
 
+	const onKeyUp = () => {
+		if (window.ReactNativeWebView) {
+			window.ReactNativeWebView?.postMessage(
+				JSON.stringify({
+					domain: 'UTIL',
+					type: 'KEYBOARD_UP',
+				}),
+			);
+		}
+	};
+
+	const onKeyDown = () => {
+		if (window.ReactNativeWebView) {
+			window.ReactNativeWebView?.postMessage(
+				JSON.stringify({
+					domain: 'UTIL',
+					type: 'KEYBOARD_DOWN',
+				}),
+			);
+		}
+	};
+
 	return (
 		<>
 			<Wrapper>
@@ -31,6 +53,8 @@ function Write(props: WriteProps) {
 							value={text}
 							onChange={(event) => onChange(event)}
 							onPaste={(event) => onPaste(event)}
+							onFocus={onKeyUp}
+							onBlur={onKeyDown}
 						/>
 					</div>
 				</div>

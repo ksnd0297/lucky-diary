@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { subDays } from 'date-fns';
-import { Fragment } from 'react';
 import { withLayout } from '@/components/layout/withLayout';
 import List from './components/List';
 
