@@ -22,8 +22,9 @@
         "tsx": "never"
       }
     ],
-    "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": false }],
+    "no-use-before-define": ["off"],
     "react/jsx-no-useless-fragment": ["off"],
-    "import/prefer-default-export": ["off"]
+    "import/prefer-default-export": ["off"],
+    "consistent-return": ["off"]
   }
 }
