@@ -4,7 +4,7 @@ import { withLayout } from '@/components/layout/withLayout';
 import usePopup from '@/hooks/usePopup';
 
 function SettingPage() {
-	const { showPopup, hidePopup } = usePopup();
+	const { showPopup } = usePopup();
 
 	const onAskClick = () => {
 		window?.open(
@@ -21,13 +21,6 @@ function SettingPage() {
 					<p>삭제한 일기들은 되돌릴 수 없습니다.</p>
 				</>
 			),
-			onConfirm: () => {
-				// TODO : 리셋 로직 작동
-				hidePopup();
-			},
-			onCancel: () => {
-				hidePopup();
-			},
 		});
 	};
 

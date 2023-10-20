@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import Write from './components/Write';
 
@@ -12,12 +12,6 @@ function Fill(props: FillProps) {
 	const { wroteText, isWrote } = props;
 
 	const [text, setText] = useState<string>(wroteText ?? '');
-
-	useEffect(() => {
-		if (wroteText) {
-			setText(wroteText);
-		}
-	}, [wroteText]);
 
 	return (
 		<Wrapper>

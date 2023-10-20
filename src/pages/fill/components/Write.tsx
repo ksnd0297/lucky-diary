@@ -31,6 +31,7 @@ function Write(props: WriteProps) {
 							value={text}
 							onChange={(event) => onChange(event)}
 							onPaste={(event) => onPaste(event)}
+							readOnly={isWrote}
 						/>
 					</div>
 				</div>
