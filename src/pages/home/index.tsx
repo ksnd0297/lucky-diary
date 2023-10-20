@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { withLayout } from '@/components/layout/withLayout';
+import useUserInfo from '@/hooks/useUserInfo';
 import BeforeWrite from './components/BeforeWrite';
 import Coin from './components/Coin';
 
 import HomeButton from './components/HomeButton';
 import Quote from './components/Quote';
-import useUserInfo from './hooks/useUserInfo';
 
 function Home() {
 	const { userInfo } = useUserInfo();
