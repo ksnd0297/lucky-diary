@@ -5,6 +5,13 @@ import { popupConfigState } from '@/Constant/layout';
 const usePopup = () => {
 	const setPopupConfig = useSetRecoilState(popupConfigState);
 
+	const hidePopup = () => {
+		setPopupConfig({
+			isOpen: false,
+			children: <></>,
+		});
+	};
+
 	const showPopup = ({
 		children,
 		onConfirm,
@@ -21,17 +28,10 @@ const usePopup = () => {
 		setPopupConfig({
 			isOpen: true,
 			children,
-			onConfirm,
-			onCancel,
+			onConfirm: onConfirm ?? hidePopup,
+			onCancel: onCancel ?? hidePopup,
 			confirmText,
 			cancelText,
-		});
-	};
-
-	const hidePopup = () => {
-		setPopupConfig({
-			isOpen: false,
-			children: <></>,
 		});
 	};
 

@@ -25,9 +25,6 @@ function Header(props: HeaderProps) {
 				),
 				confirmText: '머무르기',
 				cancelText: '닫기',
-				onConfirm: () => {
-					hidePopup();
-				},
 				onCancel: () => {
 					hideModal();
 					hidePopup();
@@ -52,9 +49,6 @@ function Header(props: HeaderProps) {
 				// TODO : 웹뷰로 텍스트 데이터 전송
 				hidePopup();
 				hideModal();
-			},
-			onCancel: () => {
-				hidePopup();
 			},
 		});
 	};

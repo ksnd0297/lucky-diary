@@ -1,12 +1,11 @@
-import { isSameDay, subYears } from 'date-fns';
+import { isSameDay } from 'date-fns';
 import { Calendar as CalendarComponent } from 'react-calendar';
 import styled from 'styled-components';
 import { Dispatch, SetStateAction } from 'react';
+import { useRouter } from 'next/router';
 import useModal from '@/hooks/useModal';
 import Fill from '@/pages/fill';
-
-const MIN_DATE = subYears(new Date(), 1);
-const MAX_DATE = new Date();
+import usePopup from '@/hooks/usePopup';
 
 type CalendarProps = {
 	wroteText: string;
@@ -14,9 +13,11 @@ type CalendarProps = {
 };
 
 function Calendar(props: CalendarProps) {
+	const router = useRouter();
 	const { wroteText, setWroteText } = props;
 
 	const { showModal } = useModal();
+	const { showPopup, hidePopup } = usePopup();
 
 	const writeDates = [new Date(2023, 9, 4), new Date(2023, 9, 5), new Date(2023, 9, 6)];
 
@@ -25,9 +26,8 @@ function Calendar(props: CalendarProps) {
 			<CalendarComponent
 				tileClassName="calendar-tile"
 				locale="ko"
-				minDate={MIN_DATE}
-				maxDate={MAX_DATE}
 				showNeighboringMonth={false}
+				selectRange={false}
 				prev2Label="‹‹"
 				next2Label="››"
 				calendarType="gregory"
@@ -38,9 +38,19 @@ function Calendar(props: CalendarProps) {
 
 					return <></>;
 				}}
-				onClickDay={() => {
+				onClickDay={(value) => {
+					if (!writeDates.find((writeDate) => isSameDay(writeDate, value))) {
+						return showPopup({
+							children: <BeforeWrite />,
+							onConfirm: () => {
+								router.push('/');
+								hidePopup();
+							},
+						});
+					}
+
 					setWroteText(wroteText);
-					showModal({
+					return showModal({
 						children: <Fill wroteText={wroteText} isWrote />,
 					});
 				}}
@@ -50,6 +60,16 @@ function Calendar(props: CalendarProps) {
 }
 
 export default Calendar;
+
+function BeforeWrite() {
+	return (
+		<>
+			<h3>작성된 일기가 없습니다 !</h3>
+			<br />
+			<p>오늘 일기를 작성하러 가실까요 ?</p>
+		</>
+	);
+}
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -91,6 +111,7 @@ const Wrapper = styled.div`
 	.react-calendar__tile--now {
 		border-radius: 6px;
 		color: #6f48eb;
+		font-size: 18px;
 	}
 
 	.react-calendar__tile--hasActive:enabled:hover,
@@ -107,7 +128,7 @@ const Wrapper = styled.div`
 		background-color: #f8f8fa;
 	}
 	.react-calendar__tile--range {
-		color: black;
+		color: #876ae8;
 		font-weight: 900;
 		border-radius: 0;
 	}

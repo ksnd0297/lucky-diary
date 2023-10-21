@@ -55,6 +55,7 @@ function Write(props: WriteProps) {
 							onPaste={(event) => onPaste(event)}
 							onFocus={onKeyUp}
 							onBlur={onKeyDown}
+							readOnly={isWrote}
 						/>
 					</div>
 				</div>
