@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { isClient } from '@/utils/device';
+import { useEffect, useState } from 'react';
+import { isClient, isWebView } from '@/utils/device';
 
 type messageType = {
 	type: string;
@@ -12,29 +12,25 @@ const useMessage = () => {
 	const [data, setData] = useState<{ code: number; key: string; data: any }>();
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 
-	const getMessage = () => {
-		if (!isClient) return;
+	const listener = (event: MessageEvent) => {
+		if (!isWebView()) return;
 
-		const listener = (event: MessageEvent) => {
-			const response = JSON.parse(event.data);
+		const response = JSON.parse(event.data);
 
-			setIsFetched(true);
-			setData(response);
-		};
-
-		window.addEventListener('message', listener);
+		setIsFetched(true);
+		setData(response);
 	};
 
 	const postMessage = (message: messageType) => {
 		if (!isClient) return;
 
-		window.ReactNativeWebView.postMessage(JSON.stringify(message));
+		window.ReactNativeWebView?.postMessage(JSON.stringify(message));
 	};
 
 	const debug = (message: object) => {
 		if (!isClient) return;
 
-		window.ReactNativeWebView.postMessage(
+		window.ReactNativeWebView?.postMessage(
 			JSON.stringify({
 				domain: 'UTIL',
 				type: 'DEBUG',
@@ -43,7 +39,13 @@ const useMessage = () => {
 		);
 	};
 
-	getMessage();
+	useEffect(() => {
+		if (!isClient) return;
+
+		window.addEventListener('message', listener);
+
+		return () => window.removeEventListener('message', listener);
+	});
 
 	return { response: data!, isFetched, postMessage, debug };
 };
