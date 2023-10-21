@@ -24,6 +24,7 @@ const useMessage = () => {
 	const postMessage = (message: messageType) => {
 		if (!isClient) return;
 
+		setIsFetched(false);
 		window.ReactNativeWebView?.postMessage(JSON.stringify(message));
 	};
 
@@ -41,11 +42,10 @@ const useMessage = () => {
 
 	useEffect(() => {
 		if (!isClient) return;
-
 		window.addEventListener('message', listener);
 
 		return () => window.removeEventListener('message', listener);
-	});
+	}, []);
 
 	return { response: data!, isFetched, postMessage, debug };
 };
