@@ -55,7 +55,7 @@ function Write(props: WriteProps) {
 							onPaste={(event) => onPaste(event)}
 							onFocus={onKeyUp}
 							onBlur={onKeyDown}
-							readOnly={isWrote}
+							disabled={isWrote}
 						/>
 					</div>
 				</div>
@@ -117,5 +117,6 @@ const Wrapper = styled.div`
 
 		font-size: 18px;
 		box-sizing: border-box;
+		opacity: 1; /* required on iOS */
 	}
 `;

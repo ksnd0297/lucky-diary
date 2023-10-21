@@ -10,12 +10,14 @@ import Quote from './components/Quote';
 function Home() {
 	const { userInfo } = useUserInfo();
 
+	const { last, isTodayWrite } = userInfo;
+
 	return (
 		<Wrapper>
 			<Coin />
-			<BeforeWrite date={userInfo.last} />
+			<BeforeWrite date={last} />
 			<Quote />
-			<HomeButton date={userInfo.last} />
+			<HomeButton isTodayWrite={isTodayWrite} />
 		</Wrapper>
 	);
 }
