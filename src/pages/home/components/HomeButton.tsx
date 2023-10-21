@@ -1,21 +1,21 @@
 import { styled } from 'styled-components';
-import { differenceInDays } from 'date-fns';
 import { useRouter } from 'next/router';
 import useModal from '@/hooks/useModal';
 import Fill from '@/pages/fill';
 
 type HomeButtonProps = {
-	date: string;
+	isTodayWrite: boolean;
 };
 
 function HomeButton(props: HomeButtonProps) {
 	const router = useRouter();
 
-	const { date } = props;
+	const { isTodayWrite } = props;
 
 	const { showModal } = useModal();
 
 	const onClick = () => {
+		// * 일기를 작성했을 경우
 		if (!isTodayWrite) {
 			return showModal({
 				children: <Fill />,
@@ -24,8 +24,6 @@ function HomeButton(props: HomeButtonProps) {
 
 		router.push('/list');
 	};
-
-	const isTodayWrite = date && differenceInDays(new Date(date), new Date()) === 0;
 
 	return (
 		<Wrapper onClick={onClick}>

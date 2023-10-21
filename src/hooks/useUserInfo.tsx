@@ -6,7 +6,7 @@ import { userInfoState } from '@/Constant/user';
 const useUserInfo = () => {
 	const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
-	const { response, isFetched, postMessage, debug } = useMessage();
+	const { response, isFetched, postMessage } = useMessage();
 
 	const { code, key, data } = response || {};
 
@@ -30,14 +30,11 @@ const useUserInfo = () => {
 		}
 
 		setUserInfo({
-			coin: data.coin,
-			last: data.last,
+			coin: data?.coin ?? '',
+			last: data?.last ?? '',
+			isTodayWrite: data?.isTodayWrite ?? false,
 		});
 	}, [isFetched, key]);
-
-	debug({
-		userInfo,
-	});
 
 	return { userInfo };
 };
