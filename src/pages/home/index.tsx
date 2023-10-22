@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { withLayout } from '@/components/layout/withLayout';
-import useUserInfo from '@/hooks/useUserInfo';
+import useUserInfo from '@/hooks/home/useUserInfo.tsx';
 import BeforeWrite from './components/BeforeWrite';
 import Coin from './components/Coin';
 

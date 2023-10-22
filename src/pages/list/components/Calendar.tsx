@@ -1,8 +1,8 @@
 import { isSameDay } from 'date-fns';
 import { Calendar as CalendarComponent } from 'react-calendar';
 import styled from 'styled-components';
-import useWriteDates from '../hooks/useWriteDates';
-import useDiary from '../hooks/useDiary';
+import useWriteDates from '@/hooks/list/useWriteDates.tsx';
+import useDiary from '@/hooks/list/useDiary.tsx';
 
 function Calendar() {
 	const { writeDates } = useWriteDates();
