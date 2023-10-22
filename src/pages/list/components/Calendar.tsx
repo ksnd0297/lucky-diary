@@ -84,14 +84,13 @@ const Wrapper = styled.div`
 	.react-calendar__tile--active {
 		border-radius: 6px;
 		font-weight: bold;
-		color: white;
 	}
 
 	.react-calendar--selectRange .react-calendar__tile--hover {
 		background-color: #f8f8fa;
 	}
 	.react-calendar__tile--range {
-		color: #876ae8;
+		color: black;
 		font-weight: 900;
 		border-radius: 0;
 	}

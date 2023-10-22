@@ -14,17 +14,17 @@ const useDiary = (writeDates: Date[]) => {
 
 	const { response, isFetched, postMessage } = useMessage();
 
-	const { data, key } = response || {};
+	const { data, code, key } = response || {};
 
 	useEffect(() => {
 		if (!isFetched) return;
 
-		if (key === 'DIARY_GET_DIARY') {
+		if (key[0] === 'DIARY_GET_DIARY' && code === 200) {
 			showModal({
 				children: <Fill wroteText={data.text} isWrote />,
 			});
 		}
-	}, [isFetched]);
+	}, [isFetched, key]);
 
 	const onClick = (value: Date) => {
 		const isExist = writeDates.find((writeDate) => isSameDay(writeDate, value));

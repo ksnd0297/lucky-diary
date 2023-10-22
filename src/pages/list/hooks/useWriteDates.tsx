@@ -6,7 +6,7 @@ const useWriteDates = () => {
 
 	const { response, isFetched, postMessage } = useMessage();
 
-	const { data, key } = response || {};
+	const { data, code, key } = response || {};
 
 	useEffect(() => {
 		postMessage({
@@ -18,12 +18,12 @@ const useWriteDates = () => {
 	useEffect(() => {
 		if (!isFetched) return;
 
-		if (key === 'DIARY_GET_DIARY_DATE_LIST') {
+		if (key[0] === 'DIARY_GET_DIARY_DATE_LIST' && code === 200) {
 			const dateList = JSON.parse(data).map((date: string) => new Date(date));
 
 			setWriteDates(dateList);
 		}
-	}, [isFetched]);
+	}, [isFetched, key]);
 
 	return { writeDates };
 };

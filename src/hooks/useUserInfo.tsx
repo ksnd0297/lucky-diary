@@ -8,7 +8,7 @@ const useUserInfo = () => {
 
 	const { response, isFetched, postMessage } = useMessage();
 
-	const { code, key, data } = response || {};
+	const { key, code, data } = response || {};
 
 	useEffect(() => {
 		// * 사용자 정보를 조회합니다
@@ -21,20 +21,14 @@ const useUserInfo = () => {
 	useEffect(() => {
 		if (!isFetched) return;
 
-		// * info.json 이 존재하지 않을 경우
-		if (code === 404) {
-			return postMessage({
-				domain: 'INFO',
-				type: 'CREATE_INFO',
+		if (key[0] === 'INFO_GET_INFO' && code === 200) {
+			setUserInfo({
+				coin: data?.coin ?? '',
+				last: data?.last ?? '',
+				isTodayWrite: data?.isTodayWrite ?? false,
 			});
 		}
-
-		setUserInfo({
-			coin: data?.coin ?? '',
-			last: data?.last ?? '',
-			isTodayWrite: data?.isTodayWrite ?? false,
-		});
-	}, [isFetched, key]);
+	}, [key, isFetched]);
 
 	return { userInfo };
 };
