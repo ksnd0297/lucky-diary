@@ -1,25 +1,13 @@
 import { isSameDay } from 'date-fns';
 import { Calendar as CalendarComponent } from 'react-calendar';
 import styled from 'styled-components';
-import { Dispatch, SetStateAction } from 'react';
-import { useRouter } from 'next/router';
-import useModal from '@/hooks/useModal';
-import Fill from '@/pages/fill';
-import usePopup from '@/hooks/usePopup';
+import useWriteDates from '@/hooks/list/useWriteDates.tsx';
+import useDiary from '@/hooks/list/useDiary.tsx';
 
-type CalendarProps = {
-	wroteText: string;
-	setWroteText: Dispatch<SetStateAction<string>>;
-};
+function Calendar() {
+	const { writeDates } = useWriteDates();
 
-function Calendar(props: CalendarProps) {
-	const router = useRouter();
-	const { wroteText, setWroteText } = props;
-
-	const { showModal } = useModal();
-	const { showPopup, hidePopup } = usePopup();
-
-	const writeDates = [new Date(2023, 9, 4), new Date(2023, 9, 5), new Date(2023, 9, 6)];
+	const { onDateClick } = useDiary(writeDates);
 
 	return (
 		<Wrapper>
@@ -34,42 +22,17 @@ function Calendar(props: CalendarProps) {
 				minDetail="month"
 				// eslint-disable-next-line react/no-unstable-nested-components
 				tileContent={({ date }) => {
-					if (writeDates.find((writeDate) => isSameDay(writeDate, date))) return <Circle />;
+					if (writeDates?.find((writeDate) => isSameDay(writeDate, date))) return <Circle />;
 
 					return <></>;
 				}}
-				onClickDay={(value) => {
-					if (!writeDates.find((writeDate) => isSameDay(writeDate, value))) {
-						return showPopup({
-							children: <BeforeWrite />,
-							onConfirm: () => {
-								router.push('/');
-								hidePopup();
-							},
-						});
-					}
-
-					setWroteText(wroteText);
-					return showModal({
-						children: <Fill wroteText={wroteText} isWrote />,
-					});
-				}}
+				onClickDay={(value) => onDateClick(value)}
 			/>
 		</Wrapper>
 	);
 }
 
 export default Calendar;
-
-function BeforeWrite() {
-	return (
-		<>
-			<h3>작성된 일기가 없습니다 !</h3>
-			<br />
-			<p>오늘 일기를 작성하러 가실까요 ?</p>
-		</>
-	);
-}
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -121,14 +84,13 @@ const Wrapper = styled.div`
 	.react-calendar__tile--active {
 		border-radius: 6px;
 		font-weight: bold;
-		color: white;
 	}
 
 	.react-calendar--selectRange .react-calendar__tile--hover {
 		background-color: #f8f8fa;
 	}
 	.react-calendar__tile--range {
-		color: #876ae8;
+		color: black;
 		font-weight: 900;
 		border-radius: 0;
 	}
