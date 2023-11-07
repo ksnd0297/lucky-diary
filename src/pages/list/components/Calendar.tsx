@@ -1,49 +1,32 @@
-import { isSameDay, subYears } from 'date-fns';
+import { isSameDay } from 'date-fns';
 import { Calendar as CalendarComponent } from 'react-calendar';
 import styled from 'styled-components';
-import { Dispatch, SetStateAction } from 'react';
-import useModal from '@/hooks/useModal';
-import Fill from '@/pages/fill';
+import useWriteDates from '@/hooks/list/useWriteDates.tsx';
+import useDiary from '@/hooks/list/useDiary.tsx';
 
-const MIN_DATE = subYears(new Date(), 1);
-const MAX_DATE = new Date();
+function Calendar() {
+	const { writeDates } = useWriteDates();
 
-type CalendarProps = {
-	wroteText: string;
-	setWroteText: Dispatch<SetStateAction<string>>;
-};
-
-function Calendar(props: CalendarProps) {
-	const { wroteText, setWroteText } = props;
-
-	const { showModal } = useModal();
-
-	const writeDates = [new Date(2023, 9, 4), new Date(2023, 9, 5), new Date(2023, 9, 6)];
+	const { onDateClick } = useDiary(writeDates);
 
 	return (
 		<Wrapper>
 			<CalendarComponent
 				tileClassName="calendar-tile"
 				locale="ko"
-				minDate={MIN_DATE}
-				maxDate={MAX_DATE}
 				showNeighboringMonth={false}
+				selectRange={false}
 				prev2Label="‹‹"
 				next2Label="››"
 				calendarType="gregory"
 				minDetail="month"
 				// eslint-disable-next-line react/no-unstable-nested-components
 				tileContent={({ date }) => {
-					if (writeDates.find((writeDate) => isSameDay(writeDate, date))) return <Circle />;
+					if (writeDates?.find((writeDate) => isSameDay(writeDate, date))) return <Circle />;
 
 					return <></>;
 				}}
-				onClickDay={() => {
-					setWroteText(wroteText);
-					showModal({
-						children: <Fill wroteText={wroteText} isWrote />,
-					});
-				}}
+				onClickDay={(value) => onDateClick(value)}
 			/>
 		</Wrapper>
 	);
@@ -91,6 +74,7 @@ const Wrapper = styled.div`
 	.react-calendar__tile--now {
 		border-radius: 6px;
 		color: #6f48eb;
+		font-size: 18px;
 	}
 
 	.react-calendar__tile--hasActive:enabled:hover,
@@ -100,7 +84,6 @@ const Wrapper = styled.div`
 	.react-calendar__tile--active {
 		border-radius: 6px;
 		font-weight: bold;
-		color: white;
 	}
 
 	.react-calendar--selectRange .react-calendar__tile--hover {

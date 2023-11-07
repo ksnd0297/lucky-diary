@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import useModal from '@/hooks/useModal';
 import usePopup from '@/hooks/usePopup';
+import useMessage from '@/hooks/useMessage';
 
 type HeaderProps = {
 	text: string;
@@ -14,6 +15,8 @@ function Header(props: HeaderProps) {
 	const { hideModal } = useModal();
 	const { showPopup, hidePopup } = usePopup();
 
+	const { postMessage } = useMessage();
+
 	const onClose = () => {
 		if (text.length > 0 && !isWrote) {
 			showPopup({
@@ -25,9 +28,6 @@ function Header(props: HeaderProps) {
 				),
 				confirmText: '머무르기',
 				cancelText: '닫기',
-				onConfirm: () => {
-					hidePopup();
-				},
 				onCancel: () => {
 					hideModal();
 					hidePopup();
@@ -49,12 +49,16 @@ function Header(props: HeaderProps) {
 			confirmText: '작성하기',
 			cancelText: '닫기',
 			onConfirm: () => {
-				// TODO : 웹뷰로 텍스트 데이터 전송
+				postMessage({
+					domain: 'DIARY',
+					type: 'CREATE_DIARY',
+					message: {
+						text,
+					},
+				});
+
 				hidePopup();
 				hideModal();
-			},
-			onCancel: () => {
-				hidePopup();
 			},
 		});
 	};

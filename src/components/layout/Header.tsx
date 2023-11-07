@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { userInfoState } from '@/Constant/user';
 
 function Header() {
 	const router = useRouter();
+
+	const [userInfo] = useRecoilState(userInfoState);
 
 	const onClick = (path: string) => {
 		router.push(`/${path}`);
@@ -13,7 +17,7 @@ function Header() {
 		<Wrapper>
 			<Div className="header-left" center="true" onClick={() => onClick('history')}>
 				<Image src="svg/heart-svgrepo-com.svg" alt="행운 코인" width={30} height={30} />
-				&nbsp;999+
+				<p style={{ paddingLeft: '5px' }}>&nbsp;{userInfo?.coin}</p>
 			</Div>
 			<Div className="header-right" center="true">
 				<Image src="svg/gear-svgrepo-com.svg" alt="설정" width={30} height={30} onClick={() => onClick('setting')} />
