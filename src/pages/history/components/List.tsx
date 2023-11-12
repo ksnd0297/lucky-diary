@@ -1,22 +1,16 @@
 import styled from 'styled-components';
-import useModal from '@/hooks/useModal';
-import Fill from '@/pages/fill';
+
 import { getFormatDate } from '@/utils/date';
+import useDiary from '@/hooks/list/useDiary';
 import { coinListType } from '../../../hooks/history/useHistory';
 
 function List(props: coinListType) {
 	const { date, coin: value } = props;
 
-	const { showModal } = useModal();
-
-	const onClick = (wroteText: string) => {
-		showModal({
-			children: <Fill wroteText={wroteText} isWrote />,
-		});
-	};
+	const { onDateClick } = useDiary();
 
 	return (
-		<Wrapper onClick={() => onClick(date.toString())}>
+		<Wrapper onClick={() => onDateClick(new Date(date))}>
 			<Div fontSize="18px">{getFormatDate(date)}</Div>
 			<Div fontSize="16px" flex center>
 				{+value >= 0 ? '💙' : '❤️'}&nbsp;&nbsp;
