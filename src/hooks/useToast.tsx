@@ -17,7 +17,7 @@ const useToast = () => {
 				isOpen: false,
 				text: '',
 			});
-		}, 1500);
+		}, 1000);
 	};
 
 	return { showToast, hideToast };

@@ -8,8 +8,8 @@ function Toast(props: ToastConfigType) {
 
 	return (
 		<Portal selector="#toast">
-			<Container>
-				<div className={clsx({ open: !!isOpen })}>
+			<Container className={clsx({ open: !!isOpen })}>
+				<div>
 					<div>{text}</div>
 				</div>
 			</Container>
@@ -27,23 +27,25 @@ const Container = styled.div`
 	display: flex;
 	align-items: end;
 	justify-content: center;
+	z-index: 3;
+	transition: transform 250ms;
+	visibility: hidden;
+
+	&.open {
+		transform: translateY(-30px);
+		visibility: visible;
+	}
 
 	div {
-		transition: transform 500ms;
+		width: 70%;
+		height: 50%;
 
-		&.open {
-			width: 70%;
-			height: 50%;
+		border-radius: 3%;
+		background-color: black;
+		color: white;
 
-			border-radius: 3%;
-			background-color: black;
-			color: white;
-
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			transform: translateY(-20px);
-		}
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 `;

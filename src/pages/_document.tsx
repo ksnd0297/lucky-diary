@@ -9,6 +9,7 @@ export default function Document() {
 				<NextScript />
 				<div id="modal" />
 				<div id="popup" />
+				<div id="toast" />
 			</body>
 		</Html>
 	);

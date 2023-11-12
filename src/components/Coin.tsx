@@ -57,6 +57,18 @@ function Coin(props: CoinProps) {
 					}}
 				/>
 			</div>
+			<div
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					flexDirection: 'column',
+					marginTop: '10px',
+				}}
+			>
+				<p style={{ fontSize: '10px' }}>오늘 작성한 일기는 더 이상 수정되지 않습니다.</p>
+				<p style={{ fontSize: '10px' }}>100 이상의 코인은 100으로 간주됩니다.</p>
+			</div>
 		</>
 	);
 }
