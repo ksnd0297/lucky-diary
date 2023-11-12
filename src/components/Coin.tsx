@@ -1,4 +1,4 @@
-import { ChangeEvent, MutableRefObject } from 'react';
+import { ChangeEvent, MutableRefObject, useEffect } from 'react';
 
 type CoinProps = {
 	coin: MutableRefObject<string | null>;
@@ -12,23 +12,18 @@ function Coin(props: CoinProps) {
 		coin.current = event.target.value;
 	};
 
+	useEffect(
+		() => () => {
+			coin.current = null;
+			emotion.current = null;
+		},
+		[],
+	);
+
 	return (
 		<>
-			<h3>오늘의 기분을 숫자로 나타내주세요!</h3>
+			<h3>오늘의 기분은 ?</h3>
 			<div className="wrapper" style={{ display: 'flex', gap: '10px' }}>
-				<div>
-					<input
-						className="form-check-input"
-						type="radio"
-						name="flexRadioDefault"
-						id="happy"
-						onClick={() => (emotion.current = 'happy')}
-					/>
-					&nbsp; &nbsp;
-					<label className="form-check-label" htmlFor="happy">
-						행복
-					</label>
-				</div>
 				<div>
 					<input
 						className="form-check-input"
@@ -42,6 +37,19 @@ function Coin(props: CoinProps) {
 						불행
 					</label>
 				</div>
+				<div>
+					<input
+						className="form-check-input"
+						type="radio"
+						name="flexRadioDefault"
+						id="happy"
+						onClick={() => (emotion.current = 'happy')}
+					/>
+					&nbsp; &nbsp;
+					<label className="form-check-label" htmlFor="happy">
+						행복
+					</label>
+				</div>
 			</div>
 			<div style={{ display: 'flex' }}>
 				<input
@@ -53,6 +61,7 @@ function Coin(props: CoinProps) {
 					onChange={onChange}
 					style={{
 						height: '30px',
+						width: '200px',
 						padding: '5px',
 					}}
 				/>
@@ -67,7 +76,7 @@ function Coin(props: CoinProps) {
 				}}
 			>
 				<p style={{ fontSize: '10px' }}>오늘 작성한 일기는 더 이상 수정되지 않습니다.</p>
-				<p style={{ fontSize: '10px' }}>100 이상의 코인은 100으로 간주됩니다.</p>
+				<p style={{ fontSize: '10px' }}>1000 이상의 코인은 1000으로 간주됩니다.</p>
 			</div>
 		</>
 	);

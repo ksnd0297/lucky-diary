@@ -33,9 +33,9 @@ function Header(props: HeaderProps) {
 						<p style={{ fontSize: '12px' }}>닫기 시 작성중인 내용은 저장되지 않습니다.</p>
 					</>
 				),
-				confirmText: '머무르기',
-				cancelText: '닫기',
-				onCancel: () => {
+				confirmText: '닫기',
+				cancelText: '머무르기',
+				onConfirm: () => {
 					hideModal();
 					hidePopup();
 				},
@@ -69,31 +69,15 @@ function Header(props: HeaderProps) {
 				// * 코인 작성
 				postMessage({
 					domain: 'COIN',
-					type: 'CREATE_COIN',
+					type: 'UPDATE_COIN',
 					message: {
 						emotion: emotion.current,
-						coin: coin.current,
+						coin: coin.current ? (+coin.current > 1000 ? 1000 : coin.current) : 0,
 					},
 				});
 
 				hidePopup();
 				hideModal();
-
-				showPopup({
-					children: <Coin coin={coin} emotion={emotion} />,
-					onConfirm: () => {
-						postMessage({
-							domain: 'COIN',
-							type: 'CREATE_COIN',
-							message: {
-								emotion: emotion.current,
-								coin: coin.current,
-							},
-						});
-
-						hidePopup();
-					},
-				});
 			},
 		});
 	};
@@ -114,9 +98,7 @@ Header.defaultProps = {
 
 const Wrapper = styled.div`
 	width: 100%;
-	height: 6%;
-
-	position: sticky;
+	height: 50px;
 
 	display: flex;
 	align-items: center;

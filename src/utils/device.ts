@@ -6,14 +6,6 @@ export const isWebView = () => {
 	return !!navigator.userAgent.match(/WebView/);
 };
 
-export const isAndroid = () => {
-	if (!isClient) return;
+export const isAndroid = () => !!navigator.userAgent.match(/Android/);
 
-	return !!navigator.userAgent.match(/Android/);
-};
-
-export const isIos = () => {
-	if (!isClient) return;
-
-	return !!navigator.userAgent.match(/ios/);
-};
+export const isIos = () => !!navigator.userAgent.match(/ios/);

@@ -20,7 +20,7 @@ function SettingPage() {
 		showPopup({
 			children: (
 				<>
-					<h3>정말 작성한 일기를 삭제하시겠습니까 ?</h3>
+					<h3>작성한 일기를 삭제할까요?</h3>
 					<br />
 					<p>삭제한 일기들은 되돌릴 수 없습니다.</p>
 				</>
