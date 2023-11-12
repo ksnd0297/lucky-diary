@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { isSameDay } from 'date-fns';
-import { useRouter } from 'next/router';
 import useMessage from '@/hooks/useMessage';
 import useModal from '@/hooks/useModal';
 import Fill from '@/pages/fill';
-import usePopup from '@/hooks/usePopup';
+import useToast from '../useToast';
 
 const useDiary = (writeDates: Date[]) => {
-	const router = useRouter();
-
 	const { showModal } = useModal();
-	const { showPopup, hidePopup } = usePopup();
+
+	const { showToast } = useToast();
 
 	const { response, isFetched, postMessage } = useMessage();
 
@@ -30,12 +28,8 @@ const useDiary = (writeDates: Date[]) => {
 		const isExist = writeDates.find((writeDate) => isSameDay(writeDate, value));
 
 		if (!isExist) {
-			return showPopup({
-				children: <BeforeWrite />,
-				onConfirm: () => {
-					router.push('/');
-					hidePopup();
-				},
+			return showToast({
+				text: '작성된 일기가 없습니다.',
 			});
 		}
 
@@ -52,13 +46,3 @@ const useDiary = (writeDates: Date[]) => {
 };
 
 export default useDiary;
-
-function BeforeWrite() {
-	return (
-		<>
-			<h3>작성된 일기가 없습니다 !</h3>
-			<br />
-			<p>오늘 일기를 작성하러 가실까요 ?</p>
-		</>
-	);
-}

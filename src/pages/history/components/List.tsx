@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import useModal from '@/hooks/useModal';
 import Fill from '@/pages/fill';
 import { getFormatDate } from '@/utils/date';
+import { coinListType } from '../hooks/useHistory';
 
-function List({ date, value }: { date: Date; value: number }) {
+function List(props: coinListType) {
+	const { date, coin: value } = props;
+
 	const { showModal } = useModal();
 
 	const onClick = (wroteText: string) => {
@@ -16,12 +19,12 @@ function List({ date, value }: { date: Date; value: number }) {
 		<Wrapper onClick={() => onClick(date.toString())}>
 			<Div fontSize="18px">{getFormatDate(date)}</Div>
 			<Div fontSize="16px" flex center>
-				{value >= 0 ? '❤️' : '💙'}&nbsp;&nbsp;
-				<Div color={value >= 0 ? 'red' : 'blue'}>{value >= 0 ? `+${value}` : value}</Div>
+				{+value >= 0 ? '💙' : '❤️'}&nbsp;&nbsp;
+				<Div color={+value >= 0 ? 'blue' : 'red'}>{+value >= 0 ? `+${+value}` : +value}</Div>
 			</Div>
 			<Div fontSize="14px" flex center>
-				<Div color={value >= 0 ? 'red' : 'blue'}>{value}</Div>&nbsp;의 행운코인을&nbsp;
-				<Div color={value >= 0 ? 'red' : 'blue'}>{value >= 0 ? '획득' : '소비'}</Div>
+				<Div color={+value >= 0 ? 'blue' : 'red'}>{+value}</Div>&nbsp;의 행운코인을&nbsp;
+				<Div color={+value >= 0 ? 'blue' : 'red'}>{+value >= 0 ? '획득' : '소비'}</Div>
 				&nbsp;했어요
 			</Div>
 			<Line />
