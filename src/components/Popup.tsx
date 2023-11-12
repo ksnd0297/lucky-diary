@@ -63,8 +63,8 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-	width: 60%;
-	height: 25%;
+	width: 70%;
+	height: 35%;
 `;
 
 const ContentWrapper = styled.div`
