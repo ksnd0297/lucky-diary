@@ -79,8 +79,20 @@ function Header(props: HeaderProps) {
 				hidePopup();
 				hideModal();
 
-				showToast({
-					text: '일기 작성을 완료했어요',
+				showPopup({
+					children: <Coin coin={coin} emotion={emotion} />,
+					onConfirm: () => {
+						postMessage({
+							domain: 'COIN',
+							type: 'CREATE_COIN',
+							message: {
+								emotion: emotion.current,
+								coin: coin.current,
+							},
+						});
+
+						hidePopup();
+					},
 				});
 			},
 		});
