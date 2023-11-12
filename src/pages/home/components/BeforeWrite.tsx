@@ -17,7 +17,7 @@ function BeforeWrite(props: BeforeWriteProps) {
 		}
 	};
 
-	const beforeWriteDay = !date ? 0 : differenceInDays(new Date(date), new Date());
+	const beforeWriteDay = !date ? 0 : -differenceInDays(new Date(date), new Date());
 
 	return (
 		<Wrapper>

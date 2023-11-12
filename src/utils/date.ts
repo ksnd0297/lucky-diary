@@ -1,5 +1,7 @@
-export const getFormatDate = (date: Date) => {
-	if (!date) return '';
+export const getFormatDate = (dateTime: Date | string) => {
+	if (!dateTime) return '';
+
+	const date = new Date(dateTime);
 
 	const year = date.getFullYear();
 	const month = 1 + date.getMonth();

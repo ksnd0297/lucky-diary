@@ -69,10 +69,10 @@ function Header(props: HeaderProps) {
 				// * 코인 작성
 				postMessage({
 					domain: 'COIN',
-					type: 'CREATE_COIN',
+					type: 'UPDATE_COIN',
 					message: {
 						emotion: emotion.current,
-						coin: coin.current,
+						coin: coin.current ? (+coin.current > 1000 ? 1000 : coin.current) : 0,
 					},
 				});
 
@@ -98,9 +98,7 @@ Header.defaultProps = {
 
 const Wrapper = styled.div`
 	width: 100%;
-	height: 6%;
-
-	position: sticky;
+	height: 50px;
 
 	display: flex;
 	align-items: center;
