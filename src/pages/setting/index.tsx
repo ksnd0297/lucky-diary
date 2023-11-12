@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { withLayout } from '@/components/layout/withLayout';
 import usePopup from '@/hooks/usePopup';
+import useMessage from '@/hooks/useMessage';
 
 function SettingPage() {
-	const { showPopup } = usePopup();
+	const { showPopup, hidePopup } = usePopup();
+	const { postMessage } = useMessage();
 
 	const onAskClick = () => {
 		window?.open(
@@ -21,6 +23,13 @@ function SettingPage() {
 					<p>삭제한 일기들은 되돌릴 수 없습니다.</p>
 				</>
 			),
+			onConfirm: () => {
+				postMessage({
+					domain: 'UTIL',
+					type: 'RESET',
+				});
+				hidePopup();
+			},
 		});
 	};
 
