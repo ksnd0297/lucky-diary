@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 const quote = [
@@ -105,12 +105,20 @@ const quote = [
 ];
 
 function Quote() {
-	const random = useMemo(() => Math.floor(Math.random() * 101), []);
+	const [text, setText] = useState<string>('');
+
+	useEffect(() => {
+		setText(quote[Math.floor(Math.random() * 101)]);
+	}, []);
 
 	return (
-		<Wrapper>
-			<P>{quote[random]}</P>
-		</Wrapper>
+		<>
+			{text && (
+				<Wrapper>
+					<P>{text ?? ''}</P>
+				</Wrapper>
+			)}
+		</>
 	);
 }
 
@@ -125,7 +133,7 @@ const Wrapper = styled.div`
 	justify-content: center;
 `;
 
-const P = styled.p`
+const P = styled.div`
 	font-size: 11px;
 	padding: 3%;
 	font-weight: bold;

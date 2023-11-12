@@ -5,7 +5,7 @@ import useModal from '@/hooks/useModal';
 import Fill from '@/pages/fill';
 import useToast from '../useToast';
 
-const useDiary = (writeDates: Date[]) => {
+const useDiary = (writeDates?: Date[]) => {
 	const { showModal } = useModal();
 
 	const { showToast } = useToast();
@@ -25,12 +25,14 @@ const useDiary = (writeDates: Date[]) => {
 	}, [isFetched, key]);
 
 	const onClick = (value: Date) => {
-		const isExist = writeDates.find((writeDate) => isSameDay(writeDate, value));
+		if (writeDates) {
+			const isExist = writeDates.find((writeDate) => isSameDay(writeDate, value));
 
-		if (!isExist) {
-			return showToast({
-				text: '작성된 일기가 없습니다.',
-			});
+			if (!isExist) {
+				return showToast({
+					text: '작성된 일기가 없습니다.',
+				});
+			}
 		}
 
 		postMessage({
