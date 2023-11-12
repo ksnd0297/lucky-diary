@@ -69,7 +69,7 @@ const Wrapper = styled.div`
 
 const ContentWrapper = styled.div`
 	width: 100%;
-	height: 60%;
+	height: 80%;
 	background-color: white;
 	border-top-left-radius: 2%;
 	border-top-right-radius: 2%;
