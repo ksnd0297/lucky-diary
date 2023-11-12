@@ -3,10 +3,12 @@ import Image from 'next/image';
 import { withLayout } from '@/components/layout/withLayout';
 import usePopup from '@/hooks/usePopup';
 import useMessage from '@/hooks/useMessage';
+import useToast from '@/hooks/useToast';
 
 function SettingPage() {
 	const { showPopup, hidePopup } = usePopup();
 	const { postMessage } = useMessage();
+	const { showToast } = useToast();
 
 	const onAskClick = () => {
 		window?.open(
@@ -29,6 +31,9 @@ function SettingPage() {
 					type: 'RESET',
 				});
 				hidePopup();
+				showToast({
+					text: '디아어리를 재실행 해주세요',
+				});
 			},
 		});
 	};
