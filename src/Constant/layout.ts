@@ -24,3 +24,13 @@ export const popupConfigState = atom({
 	key: 'popupConfigState',
 	default: {} as PopupConfigType,
 });
+
+export type ToastConfigType = {
+	isOpen?: boolean;
+	text: string;
+};
+
+export const toastConfigState = atom({
+	key: 'toastConfigState',
+	default: {} as ToastConfigType,
+});
