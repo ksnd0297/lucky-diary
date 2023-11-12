@@ -5,9 +5,8 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { RecoilRoot, useRecoilValue } from 'recoil';
 import Modal from '@/components/Modal';
-import { modalConfigState, popupConfigState, toastConfigState } from '@/Constant/layout';
+import { modalConfigState, popupConfigState } from '@/Constant/layout';
 import Popup from '@/components/Popup';
-import Toast from '@/components/Toast';
 
 function ModalComponent() {
 	const modalConfig = useRecoilValue(modalConfigState);
@@ -19,12 +18,6 @@ function PopupComponent() {
 	const popupConfig = useRecoilValue(popupConfigState);
 
 	return <Popup {...popupConfig} />;
-}
-
-function ToastComponent() {
-	const toastConfig = useRecoilValue(toastConfigState);
-
-	return <Toast {...toastConfig} />;
 }
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -40,7 +33,6 @@ export default function App({ Component, pageProps }: AppProps) {
 				<Component {...pageProps} />
 				<ModalComponent />
 				<PopupComponent />
-				<ToastComponent />
 			</RecoilRoot>
 		</>
 	);
