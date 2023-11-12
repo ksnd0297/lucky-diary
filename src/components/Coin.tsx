@@ -1,4 +1,4 @@
-import { ChangeEvent, MutableRefObject } from 'react';
+import { ChangeEvent, MutableRefObject, useEffect } from 'react';
 
 type CoinProps = {
 	coin: MutableRefObject<string | null>;
@@ -12,23 +12,18 @@ function Coin(props: CoinProps) {
 		coin.current = event.target.value;
 	};
 
+	useEffect(
+		() => () => {
+			coin.current = null;
+			emotion.current = null;
+		},
+		[],
+	);
+
 	return (
 		<>
 			<h3>오늘의 기분을 숫자로 나타내주세요!</h3>
 			<div className="wrapper" style={{ display: 'flex', gap: '10px' }}>
-				<div>
-					<input
-						className="form-check-input"
-						type="radio"
-						name="flexRadioDefault"
-						id="happy"
-						onClick={() => (emotion.current = 'happy')}
-					/>
-					&nbsp; &nbsp;
-					<label className="form-check-label" htmlFor="happy">
-						행복
-					</label>
-				</div>
 				<div>
 					<input
 						className="form-check-input"
@@ -40,6 +35,19 @@ function Coin(props: CoinProps) {
 					&nbsp; &nbsp;
 					<label className="form-check-label" htmlFor="unhappy">
 						불행
+					</label>
+				</div>
+				<div>
+					<input
+						className="form-check-input"
+						type="radio"
+						name="flexRadioDefault"
+						id="happy"
+						onClick={() => (emotion.current = 'happy')}
+					/>
+					&nbsp; &nbsp;
+					<label className="form-check-label" htmlFor="happy">
+						행복
 					</label>
 				</div>
 			</div>
