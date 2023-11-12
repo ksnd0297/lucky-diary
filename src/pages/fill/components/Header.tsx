@@ -5,6 +5,7 @@ import useModal from '@/hooks/useModal';
 import usePopup from '@/hooks/usePopup';
 import useMessage from '@/hooks/useMessage';
 import Coin from '@/components/Coin';
+import useToast from '@/hooks/useToast';
 
 type HeaderProps = {
 	text: string;
@@ -16,6 +17,7 @@ function Header(props: HeaderProps) {
 
 	const { hideModal } = useModal();
 	const { showPopup, hidePopup } = usePopup();
+	const { showToast } = useToast();
 
 	const { postMessage } = useMessage();
 
@@ -44,23 +46,33 @@ function Header(props: HeaderProps) {
 	};
 
 	const onSubmit = () => {
-		if (text.length <= 0) return;
+		if (text.length <= 0) {
+			return showToast({
+				text: '일기를 작성해 주세요!',
+			});
+		}
 
 		showPopup({
-			children: (
-				<>
-					<h3>일기를 작성하시겠습니까 ?</h3>
-					<p style={{ fontSize: '12px' }}>오늘 작성한 일기는 더 이상 수정되지 않습니다.</p>
-				</>
-			),
-			confirmText: '작성하기',
-			cancelText: '닫기',
+			children: <Coin coin={coin} emotion={emotion} />,
+			confirmText: '일기 작성',
+			cancelText: '작성 취소',
 			onConfirm: () => {
+				// * 일기 작성
 				postMessage({
 					domain: 'DIARY',
 					type: 'CREATE_DIARY',
 					message: {
 						text,
+					},
+				});
+
+				// * 코인 작성
+				postMessage({
+					domain: 'COIN',
+					type: 'CREATE_COIN',
+					message: {
+						emotion: emotion.current,
+						coin: coin.current,
 					},
 				});
 
