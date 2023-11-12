@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { withLayout } from '@/components/layout/withLayout';
 import List from './components/List';
-import useHistory from './hooks/useHistory';
+import useHistory from '../../hooks/history/useHistory';
 
 function History() {
 	const { coinList } = useHistory();

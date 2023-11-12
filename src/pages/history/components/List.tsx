@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import useModal from '@/hooks/useModal';
 import Fill from '@/pages/fill';
 import { getFormatDate } from '@/utils/date';
-import { coinListType } from '../hooks/useHistory';
+import { coinListType } from '../../../hooks/history/useHistory';
 
 function List(props: coinListType) {
 	const { date, coin: value } = props;
