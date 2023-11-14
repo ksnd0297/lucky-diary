@@ -58,6 +58,8 @@ function Coin(props: CoinProps) {
 					name="flexRadioDefault"
 					id="coin"
 					placeholder="행운 코인을 입력해주세요."
+					inputMode="numeric"
+					pattern="[0-9]*"
 					onChange={onChange}
 					style={{
 						height: '30px',
