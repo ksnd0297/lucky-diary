@@ -20,7 +20,5 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	justify-content: space-between;
-
-	padding: 1%;
+	background-color: #fcf9fb;
 `;

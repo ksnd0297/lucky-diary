@@ -4,18 +4,43 @@ import styled from 'styled-components';
 type WriteProps = {
 	text: string;
 	setText: Dispatch<SetStateAction<string>>;
+	isWrote?: boolean;
 };
 
 function Write(props: WriteProps) {
-	const { text, setText } = props;
+	const { text, setText, isWrote } = props;
 
 	const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-		setText(event.target.value);
+		if (!isWrote) {
+			setText(event.target.value);
+		}
 	};
 
 	const onPaste = (event: ClipboardEvent<HTMLTextAreaElement>) => {
 		event.preventDefault();
 		return false;
+	};
+
+	const onKeyUp = () => {
+		if (window.ReactNativeWebView) {
+			window.ReactNativeWebView?.postMessage(
+				JSON.stringify({
+					domain: 'UTIL',
+					type: 'KEYBOARD_UP',
+				}),
+			);
+		}
+	};
+
+	const onKeyDown = () => {
+		if (window.ReactNativeWebView) {
+			window.ReactNativeWebView?.postMessage(
+				JSON.stringify({
+					domain: 'UTIL',
+					type: 'KEYBOARD_DOWN',
+				}),
+			);
+		}
 	};
 
 	return (
@@ -28,6 +53,9 @@ function Write(props: WriteProps) {
 							value={text}
 							onChange={(event) => onChange(event)}
 							onPaste={(event) => onPaste(event)}
+							onFocus={onKeyUp}
+							onBlur={onKeyDown}
+							disabled={isWrote}
 						/>
 					</div>
 				</div>
@@ -37,6 +65,10 @@ function Write(props: WriteProps) {
 }
 
 export default Write;
+
+Write.defaultProps = {
+	isWrote: false,
+};
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -48,8 +80,6 @@ const Wrapper = styled.div`
 		width: 100%;
 		height: 100%;
 		background: #fafafa;
-
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 		overflow: hidden;
 	}
 	.paper:before {
@@ -66,7 +96,7 @@ const Wrapper = styled.div`
 
 	.paper-content {
 		position: absolute;
-		top: 30px;
+		top: 0px;
 		right: 0;
 		bottom: 30px;
 		left: 30px;
@@ -79,13 +109,14 @@ const Wrapper = styled.div`
 		max-width: 100%;
 		height: 100%;
 		max-height: 100%;
-		line-height: 30px;
+		line-height: 25px;
 		padding: 0 10px;
 		border: 0;
 		outline: 0;
 		background: transparent;
 
-		font-size: 12px;
+		font-size: 18px;
 		box-sizing: border-box;
+		opacity: 1; /* required on iOS */
 	}
 `;

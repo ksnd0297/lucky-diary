@@ -1,11 +1,8 @@
+import { withLayout } from '@/components/layout/withLayout';
 import Calendar from './components/Calendar';
 
 function ListPage() {
-	return (
-		<>
-			<Calendar />
-		</>
-	);
+	return <Calendar />;
 }
 
-export default ListPage;
+export default withLayout({ footer: true })(ListPage);

@@ -1,21 +1,34 @@
+import styled from 'styled-components';
+import { withLayout } from '@/components/layout/withLayout';
+import useUserInfo from '@/hooks/home/useUserInfo.tsx';
 import BeforeWrite from './components/BeforeWrite';
 import Coin from './components/Coin';
-import Header from './components/Header';
+
 import HomeButton from './components/HomeButton';
 import Quote from './components/Quote';
-import Fill from '../fill';
 
 function Home() {
+	const { userInfo } = useUserInfo();
+
+	const { last, isTodayWrite } = userInfo;
+
 	return (
-		<>
-			<Header />
+		<Wrapper>
 			<Coin />
-			<BeforeWrite />
+			<BeforeWrite date={last} />
 			<Quote />
-			<HomeButton />
-			<Fill />
-		</>
+			<HomeButton isTodayWrite={isTodayWrite} />
+		</Wrapper>
 	);
 }
 
-export default Home;
+export default withLayout({ header: true })(Home);
+
+const Wrapper = styled.div`
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+`;

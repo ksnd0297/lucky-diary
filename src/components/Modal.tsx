@@ -1,13 +1,15 @@
 import styled from 'styled-components';
-import { ReactNode } from 'react';
+import { ModalConfigType } from '@/Constant/layout';
 import Portal from './Portal';
 
-function Modal({ children }: { children: ReactNode }) {
+function Modal(props: ModalConfigType) {
+	const { children, isOpen } = props;
+
 	return (
-		<Portal selector="#portal">
+		<Portal selector="#modal">
 			<Container>
 				<div className="container">
-					<div className="modal">{children}</div>
+					<div className="modal">{isOpen && children}</div>
 				</div>
 			</Container>
 		</Portal>
