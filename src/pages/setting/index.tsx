@@ -32,7 +32,7 @@ function SettingPage() {
 				});
 				hidePopup();
 				showToast({
-					text: '디아어리를 재실행 해주세요',
+					text: '디아어리가 재실행 됩니다.',
 				});
 			},
 		});
