@@ -2,21 +2,12 @@ import styled from 'styled-components';
 
 import { getFormatDate } from '@/utils/date';
 import useDiary from '@/hooks/list/useDiary';
-import useMessage from '@/hooks/useMessage';
 import { coinListType } from '../../../hooks/history/useHistory';
 
 function List(props: coinListType) {
 	const { date, coin: value, emotion } = props;
 
 	const { onDateClick } = useDiary();
-
-	const { debug } = useMessage();
-
-	console.log('date : ', new Date());
-
-	debug({
-		date: new Date(),
-	});
 
 	return (
 		<Wrapper onClick={() => onDateClick(new Date(date))}>

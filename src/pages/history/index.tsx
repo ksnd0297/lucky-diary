@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 import { withLayout } from '@/components/layout/withLayout';
+import useMessage from '@/hooks/useMessage';
 import List from './components/List';
 import useHistory from '../../hooks/history/useHistory';
 
 function History() {
 	const { coinList } = useHistory();
+
+	const { debug } = useMessage();
+
+	console.log('date : ', new Date());
+
+	debug({
+		date: new Date(),
+	});
 
 	return (
 		<>
