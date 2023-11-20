@@ -1,4 +1,4 @@
-import { differenceInDays } from 'date-fns';
+import { differenceInCalendarDays } from 'date-fns';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
@@ -17,7 +17,7 @@ function BeforeWrite(props: BeforeWriteProps) {
 		}
 	};
 
-	const beforeWriteDay = !date ? 0 : -differenceInDays(new Date(date), new Date());
+	const beforeWriteDay = !date ? 0 : -differenceInCalendarDays(new Date(date), new Date());
 
 	return (
 		<Wrapper>
